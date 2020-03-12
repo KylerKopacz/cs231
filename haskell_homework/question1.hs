@@ -59,4 +59,9 @@ partI :: Eq a => [a] -> [a] -> [a]
 partI [] [] = []
 partI [] (x:xs) = (x:xs)
 partI (f:fs) [] = []
-partI (f:fs) (x:xs) = map (partH f) (x:xs) : partI fs (x:xs)
+partI (f:fs) (x:xs) = foldr partH (x:xs) (f:fs)
+
+{- PART J -}
+partJ :: Eq a => [a] -> [[a]]
+partJ [] = []
+partJ (x:xs) = partJ [[x]] : foldr (++) 
